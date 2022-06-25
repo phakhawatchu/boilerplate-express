@@ -41,9 +41,14 @@ app.get("/:word/echo", (req, res) => {
     res.send({ echo: req.params.word });
 });
 
-app.get("/name", (req, res) => {
-    const { first, last } = req.query;
-    res.json({ name: `${first} ${last}` });
-});
+app.route("/name")
+    .get((req, res) => {
+        const { first, last } = req.query;
+        res.json({ name: `${first} ${last}` });
+    })
+    .post((req, res) => {
+        const { first, last } = req.body;
+        res.json({ name: `${first} ${last}` });
+    });
 
 module.exports = app;
